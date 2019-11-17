@@ -11,3 +11,14 @@ https://discordapi.com/permissions.html
 https://discord.js.org/
 
 ```yarn add discord.js```
+
+
+
+commands :
+```
+!ping
+!beep
+!server
+!create
+!region
+```

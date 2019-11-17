@@ -22,6 +22,13 @@ client.on('message', message => {
     message.channel.send('Pong.');
   } else if (message.content.startsWith(`${prefix}beep`)) {
     message.channel.send('Boop.');
+  } else if (message.content === `${prefix}server`) {
+    message.channel.send(`This server's name is: ${message.guild.name}`);
+    message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`);
+  } else if (message.content.startsWith(`${prefix}created`)) {
+    message.channel.send(`${message.guild.createdAt}`);
+  } else if (message.content.startsWith(`${prefix}region`)) {
+    message.channel.send(`${message.guild.region}`);
   }
 });
 
