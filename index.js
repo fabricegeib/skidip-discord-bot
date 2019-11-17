@@ -1,6 +1,16 @@
+const fs = require('fs');
 const Discord = require('discord.js');
 const { prefix, token } = require('./config.json');
+
 const client = new Discord.Client();
+client.commands = new Discord.Collection();
+
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	client.commands.set(command.name, command);
+}
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
@@ -8,30 +18,20 @@ client.on('ready', () => {
 });
 
 client.on('message', message => {
+  if (!message.content.startsWith(prefix) || message.author.bot) return;
+  
   console.log(message.content);
 
-  if (message.content === 'ping') {
-    // send back "Pong." to the channel the message was sent in
-    message.reply('Pong!');
-  }
-  if (message.content === 'twitch') {
-    message.reply('https://twitch.tv/iamfabriceg');
-  }
+  const args = message.content.slice(prefix.length).split(/ +/);
+	const command = args.shift().toLowerCase();
 
-  if (message.content.startsWith(`${prefix}ping`)) {
-    message.channel.send('Pong.');
-  } else if (message.content.startsWith(`${prefix}beep`)) {
-    message.channel.send('Boop.');
-  } else if (message.content === `${prefix}server`) {
-    message.channel.send(`This server's name is: ${message.guild.name}`);
-    message.channel.send(`Server name: ${message.guild.name}\nTotal members: ${message.guild.memberCount}`);
-  } else if (message.content.startsWith(`${prefix}created`)) {
-    message.channel.send(`${message.guild.createdAt}`);
-  } else if (message.content.startsWith(`${prefix}region`)) {
-    message.channel.send(`${message.guild.region}`);
-  } else if (message.content === `${prefix}user-info`) {
-    message.channel.send(`Your username: ${message.author.username}\nYour ID: ${message.author.id}\nYour avatar: ${message.author.avatarURL}`);
-  }
+  if (command === 'ping') {
+		client.commands.get('ping').execute(message, args);
+	} else if (command === 'beep') {
+		client.commands.get('beep').execute(message, args);
+	} else if (command === 'server') {
+		client.commands.get('server').execute(message, args);
+	}
 });
 
 
