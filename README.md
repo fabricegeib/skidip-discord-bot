@@ -21,4 +21,5 @@ commands :
 !server
 !create
 !region
+!user-info
 ```

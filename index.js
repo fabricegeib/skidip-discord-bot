@@ -29,6 +29,8 @@ client.on('message', message => {
     message.channel.send(`${message.guild.createdAt}`);
   } else if (message.content.startsWith(`${prefix}region`)) {
     message.channel.send(`${message.guild.region}`);
+  } else if (message.content === `${prefix}user-info`) {
+    message.channel.send(`Your username: ${message.author.username}\nYour ID: ${message.author.id}\nYour avatar: ${message.author.avatarURL}`);
   }
 });
 
