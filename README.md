@@ -1,4 +1,6 @@
-# SKIDP discord bot
+# SKIDIP (Discord bot)
+
+https://discordapp.com/developers/docs/intro
 
 https://discordapp.com/developers/applications/
 
