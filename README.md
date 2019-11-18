@@ -1,5 +1,9 @@
 # SKIDIP (Discord bot)
 
+https://iamfabriceg.xyz | https://skidip.team
+
+---
+
 https://discordapp.com/developers/docs/intro
 
 https://discordapp.com/developers/applications/
