@@ -1,4 +1,4 @@
-# skidip-discord-bot
+# SKIDP discord bot
 
 https://discordapp.com/developers/applications/
 
